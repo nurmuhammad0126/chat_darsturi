@@ -1,101 +1,159 @@
-import 'package:chat_dasturi/core/widgets/w_textfield.dart';
+import 'package:chat_dasturi/core/extensions/widget_extension.dart';
+import 'package:chat_dasturi/core/router/app_route_name.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../widgets/custom_textfield.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<RegisterScreen> createState() => _LoginScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _LoginScreenState extends State<RegisterScreen> {
+  final TextEditingController _nameController = TextEditingController();
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _passwordConfirmController =
+      TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: Text(
-          "Ro'yxatdan o'tish",
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        padding: EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(offset: Offset(0, 4), blurRadius: 4, spreadRadius: 0),
+          ],
+          gradient: LinearGradient(
+            colors: [
+              Color(0xFF1B223A),
+
+              Color(0xFF1B223A),
+              Color(0xFF151825),
+              Color(0xFF151825),
+              Color(0xFF151825),
+              Color(0xFF151825),
+              Color(0xFF1B223A),
+              Color(0xFF1B223A),
+            ],
+
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            // stops: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0],
           ),
         ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              WTextField(hintText: "Miraziz Berdinazarov"),
-              SizedBox(height: 10),
-              WTextField(hintText: "namuna@gmail.com"),
-              SizedBox(height: 10),
-              WTextField(hintText: "password", obscureText: true),
-              SizedBox(height: 10),
-              WTextField(hintText: "password", obscureText: true),
-              SizedBox(height: 20),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  fixedSize: Size(double.maxFinite, 45),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
+              30.height,
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "Ro'yhatdan O'tish",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 26,
                   ),
                 ),
-                onPressed: () {},
-                child: Text(
-                  "Davom etish",
-                  style: TextStyle(color: Colors.white),
+              ),
+              30.height,
+              Row(
+                spacing: 5,
+                children: [Icon(Icons.person), Text('Ism Familiya')],
+              ),
+              13.height,
+              SizedBox(
+                height: 50,
+                child: CustomFormFieldWidget(
+                  controller: _nameController,
+                  hintText: "Suhrobjon Tolipov",
                 ),
               ),
-              SizedBox(height: 30),
-              Divider(),
-              SizedBox(height: 30),
-              RegisterElevatedButton(
-                text: "Continue with Google",
-                icon: Icons.settings,
+              18.height,
+              Row(
+                spacing: 5,
+                children: [Icon(Icons.mail_outline), Text('E-MAIL:')],
               ),
-              SizedBox(height: 20),
-              RegisterElevatedButton(
-                text: "Continue with Apple",
-                icon: Icons.apple,
+              19.height,
+              SizedBox(
+                height: 50,
+                child: CustomFormFieldWidget(
+                  controller: _emailController,
+                  hintText: "namuna@gmail.com",
+                ),
               ),
+              19.height,
+              Row(
+                spacing: 5,
+                children: [Icon(Icons.lock_outline_rounded), Text('Parol:')],
+              ),
+              13.height,
+              SizedBox(
+                height: 50,
+                child: CustomFormFieldWidget(
+                  controller: _passwordController,
+                  hintText: "password",
+                ),
+              ),
+              8.height,
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "kamida 8 ta belgidan iborat boʻlishi kerak",
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w300),
+                ),
+              ).paddingOnly(left: 8),
+              19.height,
+              Row(
+                spacing: 5,
+                children: [
+                  Icon(Icons.lock_outline_rounded),
+                  Text('Parolni tasdiqlang:'),
+                ],
+              ),
+              13.height,
+              SizedBox(
+                height: 50,
+                child: CustomFormFieldWidget(
+                  controller: _passwordConfirmController,
+                  hintText: "password",
+                ),
+              ),
+              30.height,
+              InkWell(
+                onTap: () {
+                  context.go(AppRouteNames.main);
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 77, vertical: 12),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Davom etish',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              36.height,
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class RegisterElevatedButton extends StatelessWidget {
-  final String text;
-  final IconData icon;
-  const RegisterElevatedButton({
-    super.key,
-    required this.text,
-    required this.icon,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        side: BorderSide(color: Colors.white),
-        backgroundColor: Colors.black,
-        fixedSize: Size(double.maxFinite, 45),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      ),
-      onPressed: () {},
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, color: Colors.white),
-          Text(text, style: TextStyle(color: Colors.white)),
-        ],
       ),
     );
   }

@@ -1,34 +1,47 @@
+import 'package:chat_dasturi/features/main_screen.dart';
+import 'package:chat_dasturi/features/photo_screen/presentation/peges/photo_screen.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/authentication/presentation/pages/login_screen.dart';
 import '../../features/authentication/presentation/pages/register_screen.dart';
 import '../../features/authentication/presentation/pages/splash_screen.dart';
-import '../../features/home/presentation/pages/home_screen.dart';
+import '../../features/chat/presentation/pages/chat_screen.dart';
 import 'app_route_name.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
-    initialLocation: '/',
+    initialLocation: AppRouteNames.login,
     routes: [
       GoRoute(
-        path: '/',
+        path: AppRouteNames.splash,
         name: AppRouteNames.splash,
         builder: (context, state) => const SplashScreen(),
       ),
       GoRoute(
-        path: '/login',
+        path: AppRouteNames.login,
         name: AppRouteNames.login,
         builder: (context, state) => const LoginScreen(),
       ),
       GoRoute(
-        path: '/register',
+        path: AppRouteNames.register,
         name: AppRouteNames.register,
         builder: (context, state) => const RegisterScreen(),
       ),
       GoRoute(
-        path: '/home',
-        name: AppRouteNames.home,
-        builder: (context, state) => const HomeScreen(),
+        path: AppRouteNames.chat,
+        name: AppRouteNames.chat,
+        builder: (context, state) => const ChatScreen(),
+      ),
+
+      GoRoute(
+        path: AppRouteNames.main,
+        name: AppRouteNames.main,
+        builder: (context, state) => const MainScreen(),
+      ),
+      GoRoute(
+        path: AppRouteNames.photo,
+        name: AppRouteNames.photo,
+        builder: (context, state) => const PhotoScreen(),
       ),
     ],
   );

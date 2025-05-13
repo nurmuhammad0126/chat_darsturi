@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -50,22 +47,30 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyB3OAkiNzrA51g-X0pnKTSCUFmTuZc6p7I',
-    appId: '1:879925051119:android:6901413f05ad5e5c53651a',
-    messagingSenderId: '879925051119',
-    projectId: 'imtihon-a7610',
-    databaseURL: 'https://imtihon-a7610-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'imtihon-a7610.firebasestorage.app',
+    apiKey: 'AIzaSyCU-wfBCKf7U-KMWGPlvycNfcjqA_YtTCQ',
+    appId: '1:197497570606:android:56c08b529ce4332e2826bf',
+    messagingSenderId: '197497570606',
+    projectId: 'chat-project-a27dd',
+    storageBucket: 'chat-project-a27dd.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD5UtBDkvYCmjbPAMCLauU5jpU9D4tEKF4',
-    appId: '1:879925051119:ios:8e5c1da0ff30609e53651a',
-    messagingSenderId: '879925051119',
-    projectId: 'imtihon-a7610',
-    databaseURL: 'https://imtihon-a7610-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'imtihon-a7610.firebasestorage.app',
+    apiKey: 'AIzaSyBQViMV_b_nD0vUWH-nqwbXzy5gRPQziFc',
+    appId: '1:197497570606:ios:a254741ce48547f42826bf',
+    messagingSenderId: '197497570606',
+    projectId: 'chat-project-a27dd',
+    storageBucket: 'chat-project-a27dd.firebasestorage.app',
     iosBundleId: 'com.example.chatDasturi',
+  );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyAp1aeWZYzQ86i22dmXf21GbjzL8gnSLWc',
+    appId: '1:197497570606:web:793096216f724c2c2826bf',
+    messagingSenderId: '197497570606',
+    projectId: 'chat-project-a27dd',
+    authDomain: 'chat-project-a27dd.firebaseapp.com',
+    storageBucket: 'chat-project-a27dd.firebasestorage.app',
+    measurementId: 'G-YG9MF7Q52N',
   );
 
 }

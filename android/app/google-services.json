@@ -1,14 +1,13 @@
 {
   "project_info": {
-    "project_number": "879925051119",
-    "firebase_url": "https://imtihon-a7610-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "project_id": "imtihon-a7610",
-    "storage_bucket": "imtihon-a7610.firebasestorage.app"
+    "project_number": "197497570606",
+    "project_id": "chat-project-a27dd",
+    "storage_bucket": "chat-project-a27dd.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:879925051119:android:6901413f05ad5e5c53651a",
+        "mobilesdk_app_id": "1:197497570606:android:56c08b529ce4332e2826bf",
         "android_client_info": {
           "package_name": "uz.flutterblog.chat_dasturi"
         }
@@ -16,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyB3OAkiNzrA51g-X0pnKTSCUFmTuZc6p7I"
+          "current_key": "AIzaSyCU-wfBCKf7U-KMWGPlvycNfcjqA_YtTCQ"
         }
       ],
       "services": {
