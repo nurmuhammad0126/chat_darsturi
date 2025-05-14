@@ -8,13 +8,22 @@ class AuthViewModel extends ChangeNotifier {
   final AuthRepository _repo = AuthRepository();
   AuthModel? _authModel;
   UserModel? _userModel;
+  bool _isLoading = false;
 
   AuthModel? get authModel => _authModel;
   UserModel? get userModel => _userModel;
+  bool get isLoading => _isLoading;
+
+  void setLoading(bool value) {
+    _isLoading = value;
+    notifyListeners();
+  }
 
   /// Login
   Future<bool> login({required String email, required String password}) async {
+    setLoading(true);
     final result = await _repo.login(email, password);
+    setLoading(false);
     if (result != null) {
       _authModel = result;
       notifyListeners();
@@ -39,7 +48,8 @@ class AuthViewModel extends ChangeNotifier {
 
   /// Parolni tiklash
   Future<bool> sendPasswordReset(String email) async {
-    return await _repo.resetPassword(email);
+    final res = await _repo.resetPassword(email);
+    return res;
   }
 
   /// Logout

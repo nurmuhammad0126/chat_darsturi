@@ -12,7 +12,7 @@ import 'app_route_name.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
-    initialLocation: AppRouteNames.chat,
+    initialLocation: AppRouteNames.splash,
     routes: [
       GoRoute(
         path: AppRouteNames.splash,

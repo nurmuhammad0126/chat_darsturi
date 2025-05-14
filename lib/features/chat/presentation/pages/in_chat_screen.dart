@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../core/assets/app_images.dart';
 import '../../../authentication/presentation/widgets/custom_textfield.dart';
@@ -22,12 +21,6 @@ class _InChatScreenState extends State<InChatScreen> {
         title: Row(
           spacing: 10,
           children: [
-            IconButton(
-              onPressed: () {
-                context.pop();
-              },
-              icon: Icon(Icons.arrow_back_sharp),
-            ),
             Icon(Icons.person),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

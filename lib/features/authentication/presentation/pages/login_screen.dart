@@ -79,160 +79,163 @@ class _LoginScreenState extends State<LoginScreen> {
     final Color borderColor = Theme.of(context).dividerColor;
 
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        padding: EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(offset: Offset(0, 4), blurRadius: 4, spreadRadius: 0),
-          ],
-          gradient: LinearGradient(
-            colors: [
-              Color(0xFF1B223A),
-              Color(0xFF1B223A),
-              Color(0xFF151825),
-              Color(0xFF151825),
-              Color(0xFF151825),
-              Color(0xFF151825),
-              Color(0xFF1B223A),
-              Color(0xFF1B223A),
-            ],
+      backgroundColor: Color(0xff020D1B),
 
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            // stops: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0],
-          ),
-        ),
-        child: Column(
-          children: [
-            30.height,
-            Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                'KIRISH',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w900,
-                  fontSize: 26,
-                ),
-              ),
-            ),
-            30.height,
-            Row(
-              spacing: 5,
-              children: [Icon(Icons.mail_outline), Text('E-MAIL:')],
-            ),
-            13.height,
-            Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 50,
-                    child: CustomFormFieldWidget(
-                      controller: _emailController,
-                      validator: emailValidator,
-                      hintText: "namuna@gmail.com",
-                    ),
-                  ),
-                  SizedBox(height: 19),
-                  Row(
-                    spacing: 5,
-                    children: [
-                      Icon(Icons.lock_outline_rounded),
-                      Text('Parol:'),
-                    ],
-                  ),
-                  13.height,
-                  SizedBox(
-                    height: 50,
-                    child: CustomFormFieldWidget(
-                      validator: passwordValidator,
-                      controller: _passwordController,
-                      hintText: "password",
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+      body: Column(
+        children: [
+          30.height,
+          Align(
+            alignment: Alignment.topLeft,
+            child: Row(
               children: [
-                TextButton(
+                IconButton(
                   onPressed: () {
-                    context.go(AppRouteNames.forgetPaswrod);
+                    context.pop();
                   },
-                  child: Text(
-                    'Parolni unutdingizmi?',
-                    style: TextStyle(color: borderColor),
-                  ),
+                  icon: Icon(Icons.arrow_back, size: 40, color: Colors.white),
                 ),
-              ],
-            ),
-            SizedBox(height: 18),
-            GestureDetector(
-              onTap: login,
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 77, vertical: 12),
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: Center(
-                  child: Text(
-                    'Davom etish',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-            ),
-            35.height,
-            GestureDetector(
-              onTap: () {
-                context.go(AppRouteNames.register);
-              },
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 77, vertical: 12),
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: Center(
-                  child: Text(
-                    "Ro'yhatdan o'tish",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 36),
-            Row(
-              spacing: 15,
-              children: [
-                Expanded(child: Line()),
+                20.width,
                 Text(
-                  'yoki',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  "KIRISH",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 26,
+                  ),
                 ),
-                Expanded(child: Line()),
               ],
             ),
-            SizedBox(height: 36),
-            ExternalAuthButtons(
-              title: 'Continue with Google',
-              logo: Image.asset(AppImages.google),
+          ),
+          30.height,
+          Row(
+            spacing: 5,
+            children: [Icon(Icons.mail_outline), Text('E-MAIL:')],
+          ),
+          13.height,
+          Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 50,
+                  child: CustomFormFieldWidget(
+                    controller: _emailController,
+                    validator: emailValidator,
+                    hintText: "namuna@gmail.com",
+                  ),
+                ),
+                SizedBox(height: 19),
+                Row(
+                  spacing: 5,
+                  children: [Icon(Icons.lock_outline_rounded), Text('Parol:')],
+                ),
+                13.height,
+                SizedBox(
+                  height: 50,
+                  child: CustomFormFieldWidget(
+                    validator: passwordValidator,
+                    controller: _passwordController,
+                    hintText: "password",
+                  ),
+                ),
+              ],
             ),
-            SizedBox(height: 20),
-            ExternalAuthButtons(
-              title: 'Continue with Apple',
-              logo: Icon(Icons.apple),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                onPressed: () {
+                  context.go(AppRouteNames.forgetPaswrod);
+                },
+                child: Text(
+                  'Parolni unutdingizmi?',
+                  style: TextStyle(color: borderColor),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 18),
+          Consumer<AuthViewModel>(
+            builder: (context, authViewModel, _) {
+              return GestureDetector(
+                onTap: authViewModel.isLoading ? null : login,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 77, vertical: 12),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  child: Center(
+                    child:
+                        authViewModel.isLoading
+                            ? SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                color: Colors.white,
+                              ),
+                            )
+                            : Text(
+                              'Davom etish',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                  ),
+                ),
+              );
+            },
+          ),
+
+          35.height,
+          GestureDetector(
+            onTap: () {
+              context.go(AppRouteNames.register);
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 77, vertical: 12),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: Center(
+                child: Text(
+                  "Ro'yhatdan o'tish",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+              ),
             ),
-          ],
-        ),
-      ),
+          ),
+          SizedBox(height: 36),
+          Row(
+            spacing: 15,
+            children: [
+              Expanded(child: Line()),
+              Text(
+                'yoki',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              Expanded(child: Line()),
+            ],
+          ),
+          SizedBox(height: 36),
+          ExternalAuthButtons(
+            title: 'Continue with Google',
+            logo: Image.asset(AppImages.google),
+          ),
+          SizedBox(height: 20),
+          ExternalAuthButtons(
+            title: 'Continue with Apple',
+            logo: Icon(Icons.apple),
+          ),
+        ],
+      ).paddingAll(20),
     );
   }
 }
