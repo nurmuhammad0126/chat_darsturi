@@ -1,3 +1,5 @@
+import 'package:chat_dasturi/features/authentication/presentation/pages/forget_pasword.dart';
+import 'package:chat_dasturi/features/chat/presentation/pages/in_chat_screen.dart';
 import 'package:chat_dasturi/features/main_screen.dart';
 import 'package:chat_dasturi/features/photo_screen/presentation/peges/photo_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -10,7 +12,7 @@ import 'app_route_name.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
-    initialLocation: AppRouteNames.register,
+    initialLocation: AppRouteNames.chat,
     routes: [
       GoRoute(
         path: AppRouteNames.splash,
@@ -42,6 +44,17 @@ class AppRouter {
         path: AppRouteNames.photo,
         name: AppRouteNames.photo,
         builder: (context, state) => const PhotoScreen(),
+      ),
+      GoRoute(
+        path: AppRouteNames.forgetPaswrod,
+        name: AppRouteNames.forgetPaswrod,
+        builder: (context, state) => const ForgetPasword(),
+      ),
+
+      GoRoute(
+        path: AppRouteNames.inChat,
+        name: AppRouteNames.inChat,
+        builder: (context, state) => const InChatScreen(),
       ),
     ],
   );

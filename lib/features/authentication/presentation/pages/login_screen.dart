@@ -160,7 +160,9 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.go(AppRouteNames.forgetPaswrod);
+                  },
                   child: Text(
                     'Parolni unutdingizmi?',
                     style: TextStyle(color: borderColor),
@@ -181,6 +183,26 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Center(
                   child: Text(
                     'Davom etish',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            ),
+            35.height,
+            GestureDetector(
+              onTap: () {
+                context.go(AppRouteNames.register);
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 77, vertical: 12),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: Center(
+                  child: Text(
+                    "Ro'yhatdan o'tish",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                 ),

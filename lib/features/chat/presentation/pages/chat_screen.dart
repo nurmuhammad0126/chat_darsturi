@@ -1,5 +1,7 @@
+import 'package:chat_dasturi/core/router/app_route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/assets/app_images.dart';
 import '../../../authentication/presentation/widgets/custom_textfield.dart';
@@ -56,6 +58,9 @@ class _ChatScreenState extends State<ChatScreen> {
                 itemCount: 5,
                 itemBuilder: (context, index) {
                   return ListTile(
+                    onTap: () {
+                      context.push(AppRouteNames.inChat);
+                    },
                     leading: Icon(Icons.person),
                     title: Text(
                       'Smith Mathew',
