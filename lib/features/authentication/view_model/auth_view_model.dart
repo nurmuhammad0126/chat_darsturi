@@ -1,3 +1,4 @@
+import 'package:chat_dasturi/features/authentication/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 import '../data/repository/repository.dart';
@@ -6,8 +7,10 @@ import '../models/auth_model.dart';
 class AuthViewModel extends ChangeNotifier {
   final AuthRepository _repo = AuthRepository();
   AuthModel? _authModel;
+  UserModel? _userModel;
 
   AuthModel? get authModel => _authModel;
+  UserModel? get userModel => _userModel;
 
   /// Login
   Future<bool> login({required String email, required String password}) async {
@@ -61,5 +64,14 @@ class AuthViewModel extends ChangeNotifier {
     _authModel = await _repo.getCurrentUser();
     notifyListeners();
   }
-}
 
+  Future<UserModel?> getUserModel() async {
+    final user = await _repo.getUserModel();
+    return user;
+  }
+
+  Future<void> saveUserModel(UserModel user) async {
+    await _repo.saveUserModel(user);
+    _userModel = user;
+  }
+}

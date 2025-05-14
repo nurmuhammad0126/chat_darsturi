@@ -45,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Iltimos, ro\'yxatdan o\'ting.'),
+                content: Text('Bunday foydalanuvchi topilmadi !!'),
                 duration: Duration(seconds: 2),
               ),
             );

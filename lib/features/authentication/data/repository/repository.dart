@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:chat_dasturi/features/authentication/models/user_model.dart';
+
 import '../../models/auth_model.dart';
 import '../datasources/local_datasourece.dart';
 import '../datasources/remote_datasource.dart';
@@ -73,11 +75,18 @@ class AuthRepository {
   }
 
   Future<AuthModel?> register(String email, String password) async {
-  final authModel = await remote.register(email, password);
-  if (authModel != null) {
-    await local.saved(authModel);
+    final authModel = await remote.register(email, password);
+    if (authModel != null) {
+      await local.saved(authModel);
+    }
+    return authModel;
   }
-  return authModel;
-}
 
+  Future<UserModel?> getUserModel() async {
+    return await local.getUserModel();
+  }
+
+  Future<void> saveUserModel(UserModel userModel) async {
+    await local.savedUser(userModel);
+  }
 }
